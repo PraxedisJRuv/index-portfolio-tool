@@ -1,0 +1,15 @@
+def calc_vola(company, period):
+    volaL=[]
+    for p in range(len(period)-1):
+        date_range = df_lim.loc[period[p]:period[p+1]]
+        volaL.append([])
+        for ticket in company.items():
+            date_range[f"{nombre}_MCap"]= date_range[f"{nombre}_Volume"]*date_range[f"{nombre}_Close"]
+            marketcap = date_range[f"{nombre}_MCap"].mean()
+            marketL[p].append(marketcap)
+            date_range[f"{nombre}_Desv"]= (date_range[f"{nombre}_High"]+date_range[f"{nombre}_Low"])/2
+            if ((date_range[f"{nombre}_Desv"]).std()==0):
+                volaL[p].append(0)
+            else:
+                desviacion = 1/((date_range[f"{nombre}_Desv"]).std())
+                volaL[p].append(desviacion)
