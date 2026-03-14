@@ -17,3 +17,9 @@ def portfolio_vlaue_by_asset(benchmark, df, period, tickers):
         for i in range(periods):
             portfolio[j].append(benchmark[i][j]*valores[i])
     return portfolio
+
+def portfolio_returns(portfolio,period,tickers):
+    periods=amount_of_periods(period)
+    port_r=[0]*periods
+    for i in range(periods-1):
+        port_r[i]=(portfolio[i+1]/portfolio[i])-1
