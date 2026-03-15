@@ -49,13 +49,13 @@ df = pd.DataFrame({
     "Active Returns": active_returns
 })
 
-tracking_error = np.std(active_returns)
+tracking_error = np.std(active_returns) * np.sqrt(252)
 
-volatility = np.std(returns)
+volatility = np.std(returns) * np.sqrt(252)
 
-sharpe = (np.mean(returns)) / volatility
+sharpe = (np.mean(returns) *252) / volatility
 
-information_ratio = (np.mean(active_returns)) / tracking_error
+information_ratio = (np.mean(active_returns) *252) / tracking_error
 
 col1, col2, col3, col4 = st.columns(4)
 

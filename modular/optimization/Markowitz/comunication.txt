@@ -1,0 +1,34 @@
+#1er opcion
+#c++ escribe
+ofstream file("weights.csv");
+
+for(int i=0;i<n;i++)
+    file << w(i) << endl;
+
+#python lee
+import numpy as np
+
+w = np.loadtxt("weights.csv")
+
+#2da opcion
+#correr desde python
+import subprocess
+
+subprocess.run(["./portfolio"])
+
+import numpy as np
+w = np.loadtxt("weights.csv")
+
+
+#3er opcion
+#include <pybind11/pybind11.h>
+#include <pybind11/eigen.h>
+
+VectorXd optimizar(...)
+
+PYBIND11_MODULE(portfolio_opt, m) {
+    m.def("optimizar",&optimizar);
+}
+import portfolio_opt
+
+w = portfolio_opt.optimizar(Sigma,wb,w0,tau)

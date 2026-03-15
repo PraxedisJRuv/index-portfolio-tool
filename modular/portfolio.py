@@ -1,4 +1,5 @@
 from benchmarks import amount_of_periods
+
 def portfolio_value(benchmark, df, period, tickers):
     periods=amount_of_periods(period)
     portfolio=[0]*periods
