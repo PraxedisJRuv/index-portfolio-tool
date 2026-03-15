@@ -9,6 +9,18 @@ def amount_of_periods(period):
         round_num_periods=round_num_periods+1
     return round_num_periods
 
+def index_value(index, period, index_name):
+    index_v=index[f"{index_name} Close"].resample(period).mean()
+    return index_v
+
+def index_returns(index,period,index_name):
+    periods=amount_of_periods(period)
+    index_v=index_value(index, period, index_name)
+    index_r=[0]*periods
+    for i in range(periods-1):
+        index_r[i]=(index_v[i+1]/index_v[i])-1
+    return index_r
+
 def calc_dev_by_period(df,companies, period):
     deviations_by_period=[]
     for company in companies:
