@@ -3,5 +3,12 @@ python setup.py build_ext --inplace
 cl debería aparecer como comando reconocido
 
 conda install -c conda-forge compilers pybind11
+0 recomendado esto, da muchos errores
 
 también se puede instalar directamente los compiladores para esto, creo que era lo mejor
+
+Hay que ir a microsoft y descargar 
+
+Para poder generar la build, hubo que ir a microsoft y asegurarse de descargar el SDK, correr el comando desde la terminal x64 native tools
+después ya se puede usar pip install . apropiadamente en la carpeta de la build
+Después ya se puede usar el test o llamado al programa que procese bien los datos

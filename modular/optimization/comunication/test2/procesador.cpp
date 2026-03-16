@@ -29,6 +29,6 @@ py::array_t<double> procesar(py::array_t<double> input) {
     return result;
 }
 
-PYBIND11_MODULE(miprocesador, m) {
+PYBIND11_MODULE(misprocesador, m) {
     m.def("procesar", &procesar);
 }
