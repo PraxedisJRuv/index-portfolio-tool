@@ -1,3 +1,10 @@
+La tercer opción es la elegido ya que aglomera todo mejor, corre bastante rápido y no da a problemas de traducción
+el mayor inconveniente es que hay que trabajar para usarla apropiadamente, sincronizando los scripts para solicitar
+los datos entre python y dejando C++ solo a optimizar, debería ser el go to.
+
+Hay que revisar bien las opciones para MArkowitz ya que si bien entiendo, KKT es bastante rápido pero no muy eficiente
+
+
 #1er opcion
 #c++ escribe
 ofstream file("weights.csv");

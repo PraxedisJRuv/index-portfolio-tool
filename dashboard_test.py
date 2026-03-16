@@ -7,9 +7,7 @@ st.set_page_config(layout="wide")
 
 st.title("Portfolio Analytics Dashboard")
 
-# -------------------------
 # Simulated Data
-# -------------------------
 
 dates = pd.date_range("2022-01-01", periods=300)
 
@@ -30,9 +28,7 @@ df = pd.DataFrame({
     "Active Returns": active_returns
 })
 
-# -------------------------
 # Metrics
-# -------------------------
 
 tracking_error = np.std(active_returns) * np.sqrt(252)
 
@@ -49,27 +45,21 @@ col2.metric("Volatility", round(volatility,4))
 col3.metric("Sharpe Ratio", round(sharpe,2))
 col4.metric("Information Ratio", round(information_ratio,2))
 
-# -------------------------
 # Portfolio vs Index Chart
-# -------------------------
 
 fig = px.line(df, x="Date", y=["Portfolio","Index"],
               title="Portfolio vs Index")
 
 st.plotly_chart(fig, use_container_width=True)
 
-# -------------------------
 # Tracking Error Chart
-# -------------------------
 
 fig2 = px.line(df, x="Date", y="Active Returns",
                title="Active Returns")
 
 st.plotly_chart(fig2, use_container_width=True)
 
-# -------------------------
 # Drawdown
-# -------------------------
 
 cum = (1 + portfolio_returns).cumprod()
 peak = np.maximum.accumulate(cum)
