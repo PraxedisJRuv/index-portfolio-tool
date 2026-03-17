@@ -5,7 +5,7 @@ ext_modules = [
     Pybind11Extension(
         "markowitz_cpp",
         ["markowitz.cpp"],
-        include_dirs=["/usr/include/eigen3"],
+        include_dirs=["C:/Users/praxy/Downloads/eigen-5.0.0"],
     ),
 ]
 

@@ -1,6 +1,6 @@
 #include <pybind11/pybind11.h>
 #include <pybind11/numpy.h>
-#include <pybind11/eigen.h>
+
 #include <Eigen/Dense>
 #include <algorithm>
 
@@ -54,7 +54,9 @@ VectorXd optimize_pg(MatrixXd Sigma, VectorXd wb)
 }
 
 
-VectorXd optimize_portfolio(MatrixXd Sigma, VectorXd wb)
+py::array_t<double> optimize_portfolio(
+        py::array_t<double> Sigma_np,
+        py::array_t<double> wb_np)
 {
     auto Sigma_buf = Sigma_np.request();
     auto wb_buf = wb_np.request();

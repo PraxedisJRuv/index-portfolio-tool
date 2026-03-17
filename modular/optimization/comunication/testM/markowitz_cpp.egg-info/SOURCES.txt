@@ -1,0 +1,6 @@
+markowitz.cpp
+setup.py
+markowitz_cpp.egg-info/PKG-INFO
+markowitz_cpp.egg-info/SOURCES.txt
+markowitz_cpp.egg-info/dependency_links.txt
+markowitz_cpp.egg-info/top_level.txt
