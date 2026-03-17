@@ -1,6 +1,0 @@
-procesador.cpp
-setup.py
-miprocesador.egg-info/PKG-INFO
-miprocesador.egg-info/SOURCES.txt
-miprocesador.egg-info/dependency_links.txt
-miprocesador.egg-info/top_level.txt

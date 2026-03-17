@@ -12,3 +12,30 @@ Hay que ir a microsoft y descargar
 Para poder generar la build, hubo que ir a microsoft y asegurarse de descargar el SDK, correr el comando desde la terminal x64 native tools
 después ya se puede usar pip install . apropiadamente en la carpeta de la build
 Después ya se puede usar el test o llamado al programa que procese bien los datos
+
+
+"""
+La clase Extension define un módulo de extensión con
+nombre "miprocesador", junto las referencias para
+hallar el archivo de c++
+el get include es para que los encabezados se incluyan
+al momento de compilar el código de c++
+
+Veamos si funciona
+python setup.py build
+Esto para la configuración
+Se generó correctamente
+
+python setup.py install
+Esto para compilar
+
+corrió apropiadamente, éxito
+"""
+
+Parece ser que cuando se actualiza un código en c++ en pybind11, vale madres y hay 
+que borrar toda la build entera, para recompilarlo, entonces se sigue un ciclo
+python setup.py build
+python setup.py install
+eterno hasta conseguir una build funcional, así que es mejor probar el algoritmo 
+por mano propio y después acoplarlo pybind11, con ayuda de IA, para que 
+traduzca bien los tipos de datos pybind de c++ a python y viceversa.
