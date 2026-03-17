@@ -39,3 +39,18 @@ python setup.py install
 eterno hasta conseguir una build funcional, así que es mejor probar el algoritmo 
 por mano propio y después acoplarlo pybind11, con ayuda de IA, para que 
 traduzca bien los tipos de datos pybind de c++ a python y viceversa.
+
+
+Instalar Eigen Es extraño, hay que ir a la web, descargarlo y ya...
+descomprimes la carpeta y la dejas donde sea
+Solo sebes ajustar en 
+.vscode 
+task.json
+toca escribir el path a la carpeta con Eigen
+al final de args:[
+
+    hay que añadir
+    "-I",
+    "path para la carpeta Eigen-2.0"
+]
+COn eso ya compila Eigen bien

@@ -1,3 +1,5 @@
+#include <Eigen/Dense>
+using namespace Eigen;
 VectorXd project_simplex(VectorXd v)
 {
     int n = v.size();

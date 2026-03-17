@@ -1,7 +1,6 @@
 #include <pybind11/pybind11.h>
 #include <pybind11/numpy.h>
 #include <pybind11/stl.h>
-
 #include <vector>
 #include <limits>
 #include <algorithm>
@@ -63,7 +62,6 @@ vector<int> run_kmedoids(
             }
         }
     }
-
     return medoids;
 }
 

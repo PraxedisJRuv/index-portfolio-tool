@@ -1,4 +1,6 @@
 #option with scipy
+#Se ve simple y amigable, probablemente la pruebe pero, nuevamente, en algo de investigación
+#Donde requiere estar ajustando muchas opciones diversas.
 from scipy.optimize import minimize
 import numpy as np
 

@@ -1,4 +1,6 @@
 #hay que instalar la librería, es open source. Hay que añadir OSPQ es rápido para QP financieros
+#No me es de mucho interés trabajar con otro solver, además, trabajar con librerías es lento.
+#Esta podría una muy buena opción para trabajar en otro proyecto de investigación pero no producción
 import cvxpy as cp
 import numpy as np
 import pandas as pd

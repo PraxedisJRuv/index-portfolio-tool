@@ -1,3 +1,5 @@
+//Esta es la mejor opción para algo exacto-rápido. EL problema es que es C++
+//Y c++ no está tan bien integrado con pandas o otras herramientas necesarias
 #include <iostream>
 #include <vector>
 #include <Eigen/Dense>
