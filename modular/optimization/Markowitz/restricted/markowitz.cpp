@@ -7,7 +7,7 @@ namespace py = pybind11;
 using namespace Eigen;
 using namespace std;
 
-// --- Proyección al simplex ---
+// Proyección al simplex
 VectorXd project_simplex(VectorXd v)
 {
     int n = v.size();
@@ -29,7 +29,7 @@ VectorXd project_simplex(VectorXd v)
     return w;
 }
 
-// --- Optimización PG con turnover ---
+//Optimización PG con turnover
 VectorXd optimize_pg_turnover(
         MatrixXd Sigma,
         VectorXd wb,

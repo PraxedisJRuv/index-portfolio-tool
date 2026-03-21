@@ -54,3 +54,8 @@ al final de args:[
     "path para la carpeta Eigen-2.0"
 ]
 COn eso ya compila Eigen bien
+
+Hubieron problemas con la extracción ya que Stooq no siempre tiene el mismo formto,
+parece ser que puede variar con algunas empresas, pero panda_readers funciona bastante bien
+se debió de instalar con 
+pip install pandas-datareader
