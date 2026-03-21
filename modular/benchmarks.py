@@ -1,8 +1,4 @@
-def amount_of_periods(period):
-    #from inputs import start_date as start
-    #from inputs import end_date as end
-    from main_module import start 
-    from main_module import end
+def amount_of_periods(period,start,end):
     num_periods = (end - start) / period
     round_num_periods=(end - start)//period
     if num_periods!=round_num_periods:
@@ -13,11 +9,10 @@ def index_value(index, period, index_name):
     index_v=index[f"{index_name} Close"].resample(period).mean()
     return index_v
 
-def index_returns(index,period,index_name):
-    periods=amount_of_periods(period)
+def index_returns(index,period,num_periods,index_name):
     index_v=index_value(index, period, index_name)
-    index_r=[0]*periods
-    for i in range(periods-1):
+    index_r=[0]*num_periods
+    for i in range(num_periods-1):
         index_r[i]=(index_v[i+1]/index_v[i])-1
     return index_r
 
@@ -28,9 +23,8 @@ def calc_dev_by_period(df,companies, period):
         deviations_by_period.append(deviation)
     return deviations_by_period
 
-def calc_vola(df, companies, period):
+def calc_vola(df, companies, period,num_periods):
     deviations_by_period=calc_dev_by_period(df,companies, period)
-    num_periods=amount_of_periods(period)
     volatility_weight=[]
     for i in range(num_periods):
         volatility_weight.append([])
@@ -42,9 +36,9 @@ def calc_vola(df, companies, period):
             volatility_weight[i].append(deviations_by_period[j][i]/desv_sum)
     return volatility_weight
 
-def calc_EW(companies, period):
+def calc_EW(companies, num_periods):
     ew_weight=[]
-    num_periods=amount_of_periods(period)
+    num_periods
     weight=1/len(companies)
     for i in range(num_periods):
         ew_weight.append([])
