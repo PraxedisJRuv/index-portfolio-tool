@@ -42,18 +42,14 @@ if st.button("Procesar selección"):
 
     st.session_state.resultados = resultados
 
-# ---------------------------
 # Mostrar resultados
-# ---------------------------
 if st.session_state.resultados:
     st.subheader("Resultados generados")
 
     for nombre, datos in st.session_state.resultados:
         st.write(f"{nombre}: {datos}")
 
-# ---------------------------
 # Crear gráfica nueva
-# ---------------------------
 if st.button("Agregar gráfica"):
     if st.session_state.resultados:
         fig, ax = plt.subplots()
@@ -80,3 +76,4 @@ if st.button("Resetear app"):
     st.session_state.resultados = []
     st.session_state.graficas = []
     st.rerun()
+
