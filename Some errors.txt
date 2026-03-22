@@ -59,3 +59,6 @@ Hubieron problemas con la extracción ya que Stooq no siempre tiene el mismo for
 parece ser que puede variar con algunas empresas, pero panda_readers funciona bastante bien
 se debió de instalar con 
 pip install pandas-datareader
+
+
+!!!It's still needes to know which stocks belong to which portfolio to balance the clusteirzed portfolio well!!!

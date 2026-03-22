@@ -1,10 +1,11 @@
 import pandas as pd
+import numpy as np
 from datetime import datetime, timedelta
 from extraction import full_dataframe_extraction, index_dataframe_extraction
 import benchmarks as bm
 import portfolio as port
 from optimization.Clustering.medoids.kmedoids import clustering_medoids
-from optimization.Markowitz.usual.markowitz import markowitz
+from optimization.Markowitz.usual.markowitz import markowitz,markowitz_of_periods
 tickers = ["AAPL.US","MSFT.US","ADBE.US","AMZN.US","PEP.US"]
 index_name="^NDX"
 end=datetime(2026,3,15)
@@ -31,9 +32,13 @@ portfolio_return=port.general_portfolio_returns(portfolio,num_periods)
 index_return=bm.index_returns(index,period,num_periods,index_name)
 
 sigma=port.cov_matrix(index_return,portfolio_return,num_periods)
-optimizados=markowitz(sigma,vola_weight[0])
-print(vola_weight[0])
-print(optimizados)
+
+alpha = np.random.randn(len(portfolio_return)).astype(np.float64)
+lamb = 0.1
+optimizados=markowitz_of_periods(sigma,vola_weight,alpha,lamb,num_periods)
+optimizado=port.portfolio_value(optimizados,df,period,num_periods,tickers)
+optimizado=port.portfolio_returns(optimizado,num_periods)
+print(optimizado)
 #ew=bm.calc_EW(tickers,period)
 #print(ew)
 def debugeando():
