@@ -7,7 +7,7 @@ import benchmarks as bm
 import portfolio as port
 from optimization.Clustering.medoids.kmedoids import clustering_medoids
 from optimization.Markowitz.usual.markowitz import markowitz_of_periods
-from extraction import full_dataframe_extraction, index_dataframe_extraction
+from extraction import full_dataframe_extraction, index_dataframe_extraction, pdreader_full_dataframe_extraction
 
 #Guardar en sesión
 def save_to_state(key, value):

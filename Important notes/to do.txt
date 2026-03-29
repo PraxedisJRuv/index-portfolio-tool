@@ -20,3 +20,8 @@ Adding turnover measuring function, and showing it when optimizing the portfolio
 
 We have a Markowitz optimization that should work with turnover, but, it has to be tested, and
 I don't know if have it as an option or...
+
+Adding more graphs like active returns, Drawdown, tracking error contribution
+
+More types of optimization and measuring variance should be implemented, since it has proven markowitz 
+fails in many cases unless it is propperly adapted
