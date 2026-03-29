@@ -75,10 +75,6 @@ def general_metrizised_correlation_matrix(df, period, num_periods,tickers):
     matrix=metric_correlation_matrix(matrix)
     return matrix
 
-def turnover(portfolio,index):
-    turnover=(portfolio-index).std()
-    return turnover
-
 def cov_matrix(index_returns,portfolio_returns,num_periods):
     import numpy as np
     diferencia=[]

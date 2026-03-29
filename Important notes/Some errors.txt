@@ -62,3 +62,58 @@ pip install pandas-datareader
 
 
 !!!It's still needes to know which stocks belong to which portfolio to balance the clusteirzed portfolio well!!!
+
+
+Hubieron más problemas con la extracción, al intentar correr el programa en Torreón y ya no en Monterrey, hubieron problemas
+siendo que ya no han habían habido. Marcaba un error en cuanto que no había columna "dates" para indexar los dataframes.
+Este error ya había ocurrido y normalmente, pandas-datareader era suficientemente robusto para no tener este error cuando
+era un problema de sintáxis o formato de los datos. Pero también en error
+corriendo las versiones alternas añadidas en extracción además de otros códigos, se verificó que el error era que los datos
+que Stooq devolvía eran vacíos. Devolvía algo sin nada.  
+
+Esto comprobaba que se regresaba vacío 
+def debug_url(index, start, end):
+    url = f"https://stooq.com/q/d/l/?s={index}&d1={start:%Y%m%d}&d2={end:%Y%m%d}&i=d"
+    
+    r = requests.get(url)
+    
+    print("Status:", r.status_code)
+    print("Content preview:")
+    print(r.text[:500])
+    
+    return r.text
+
+
+Esto devolvía que para indíce no jalaba panda-data reader con un error de "ticker missing"
+for idx in ["^NDX","^IPC","^SPX"]:
+    try:
+        df = web.DataReader(idx, 'stooq', start, end)
+        print(idx, "OK")
+    except Exception as e:
+        print(idx, "ERROR →", e)
+
+Con headers igual retornaba vacío ya con un código para debugear y entender propiamente el error
+
+def index_dataframe_extraction(index, start, end):
+    url = f"https://stooq.com/q/d/l/?s={index}&d1={start:%Y%m%d}&d2={end:%Y%m%d}&i=d"
+    
+    headers = {
+        "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64)"
+    }
+    
+    response = requests.get(url, headers=headers)
+    
+    if not response.text.strip() or "missing ticker" in response.text.lower():
+        print(f"Stooq returned empty or error for {index}")
+        return None
+    
+    data = pd.read_csv(StringIO(response.text), parse_dates=["Date"]).set_index("Date").sort_index()
+    data.columns = [f"{index} Open", f"{index} High", f"{index} Low", f"{index} Close", f"{index} Volume"]
+    
+    return data
+
+data=index_dataframe_extraction(index,start,end)
+print(data)
+
+De manera paralela he estado corriendo pruebas con un amigo en Monterrey y él sí recibe los datos, entonces 
+concluyo que Torreón es el problema, continuaré con pruebas hasta volver a Monterrey.
