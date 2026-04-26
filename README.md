@@ -8,6 +8,8 @@ Tool that allows you to comfortarbly extract real data to robustly build index p
 - Display each portfolio metrics. Currently: tracking error, information ratio, sharpe ratio and volatility 
 - Display a graph to visualize the tracking error.
 
+<img width="556" height="304" alt="Adobe Express - ScreenRecording_03-22-2026 14-02-39_1" src="https://github.com/user-attachments/assets/467b342f-9d7f-439c-bc53-542e89f177de" />
+
 ## Tech Stack
 | Layer        | Technology              |
 |-------------|--------------------------|
