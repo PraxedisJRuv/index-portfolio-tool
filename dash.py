@@ -3,13 +3,13 @@ import pandas as pd
 import numpy as np
 import plotly.express as px
 from datetime import datetime
-import benchmarks as bm
-import portfolio as port
-from optimization.Clustering.medoids.kmedoids import clustering_medoids
-from optimization.Markowitz.usual.markowitz import markowitz_of_periods
-from extraction import full_dataframe_extraction, index_dataframe_extraction
-import dashboard_utils as du
-from inputs import stocks, indexes, types_period
+import modular.benchmarks as bm
+import modular.portfolio as port
+from modular.optimization.Clustering.medoids.kmedoids import clustering_medoids
+from modular.optimization.Markowitz.usual.markowitz import markowitz_of_periods
+from modular.extraction import full_dataframe_extraction, index_dataframe_extraction
+import modular.dashboard_utils as du
+from modular.inputs import stocks, indexes, types_period
 
 st.set_page_config(layout="wide")
 st.title("Portfolio Analytics Dashboard")
@@ -28,6 +28,7 @@ period = pd.Timedelta(period)
 
 num_medoids = st.number_input("Clusters", 1, 10, 2)
 
+lambda_for_Markowitz = st.number_input("Lambda for Markowitz", 0.0, 1.0, 0.5)
 
 # Buttons for process
 st.header("Analyze")
@@ -46,7 +47,7 @@ if st.button("Ejecutar Proceso 3"):
     if "p1" not in st.session_state:
         st.warning("Primero ejecuta el Proceso 1")
     else:
-        du.run_process_3(tickers,period)
+        du.run_process_3(tickers,period,lambda_for_Markowitz)
 
 
 # graphs

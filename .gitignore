@@ -140,7 +140,8 @@ myenv.bak/
 venv.bak/
 .vscode
 .vscode/
-
+.conda
+.conda/
 # Spyder project settings
 .spyderproject
 .spyproject
@@ -220,7 +221,7 @@ dashboard_test.py
 dashboard_test.py/
 
 
-
+**/comunication.txt
 __pycache__
 __pycache__/
 */__pycache__/*

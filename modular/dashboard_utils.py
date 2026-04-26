@@ -2,25 +2,25 @@ import streamlit as st
 import numpy as np
 import pandas as pd
 import plotly.express as px
-from datetime import datetime
+from datetime import datetime, timedelta
 import benchmarks as bm
 import portfolio as port
 from optimization.Clustering.medoids.kmedoids import clustering_medoids
 from optimization.Markowitz.usual.markowitz import markowitz_of_periods
 from extraction import full_dataframe_extraction, index_dataframe_extraction, preventive_pdreader_extraction, pdreader_full_dataframe_extraction
 
-#Guardar en sesión
+#Save state
 def save_to_state(key, value):
     st.session_state[key] = value
 
-#Validar dependencia
+#validate dependency
 def require_keys(keys):
     for k in keys:
         if k not in st.session_state:
             return False
     return True
 
-#primer proceso
+#First process
 def run_process_1(tickers,index_name,period,start,end):
     num_periods = bm.amount_of_periods(period,start,end)
 
@@ -69,7 +69,7 @@ def run_process_2(tickers,num_medoids,period):
     }
 
 #tercer proceso
-def run_process_3(tickers,period):
+def run_process_3(tickers,period,lambda_for_Markowitz):
     p1 = st.session_state["p1"]
 
     vola_weight = bm.calc_vola(p1["df"],period,p1["num_periods"],tickers)
@@ -82,7 +82,7 @@ def run_process_3(tickers,period):
     
     #This values need to be corrected, lambda also should be selectable
     alpha = np.random.randn(len(portfolio_return)).astype(np.float64)
-    lamb = 10
+    lamb = lambda_for_Markowitz
 
     optimizados = markowitz_of_periods(sigma,vola_weight,alpha,lamb,p1["num_periods"])
 
@@ -114,10 +114,11 @@ def metrics_and_chart(returns, index_returns, start, end, num_periods, key):
         "Active Returns": active_returns
     })
 
-    tracking_error = np.std(active_returns) * np.sqrt(252)
-    volatility = np.std(returns) * np.sqrt(252)
-    sharpe = (np.mean(returns) *252) / volatility
-    information_ratio = (np.mean(active_returns) *252) / tracking_error
+    days_in_period =int(((start-end).days)-(((start-end).days)*.10))
+    tracking_error = np.std(active_returns) * np.sqrt(days_in_period)
+    volatility = np.std(returns) * np.sqrt(days_in_period)
+    sharpe = (np.mean(returns) *days_in_period) / volatility
+    information_ratio = (np.mean(active_returns) *days_in_period) / tracking_error
 
     col1, col2, col3, col4 = st.columns(4)
     col1.metric("Tracking Error", round(tracking_error,4))
