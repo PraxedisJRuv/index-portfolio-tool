@@ -39,36 +39,38 @@ C++ binding with python and the Eigen library used for Markowitz optimization.
 streamlit run dash.py
 
 ## Project Structure
+
+```text
 index-portfolio-tool/
-├── .vscode/             # Configuration of vscode (important for C++)
+├── .vscode/                # Configuration for VS Code (C++ settings)
 ├── Important notes/
-│    ├── Some errors.txt # Details about must errors how they were solved
-│    └──  to do.txt       # List of work in progress
+│   ├── some_errors.txt     # Details about common errors and solutions
+│   └── to_do.txt           # List of work in progress
 ├── Modular/
 │   ├── optimization/ 
-│   │     ├──Clustering/
-│   │     │    ├──medoids/
-│   │     │    │    ├── kmedoids.cpp    # Clustering algorithm
-│   │     │    │    ├── kmedoids.py     # Translates cpp to python function
-│   │     │    │    └──  setup.py        # Setup pybind11
-│   │     ├──Markowitz/
-│   │     │    ├── restricted/         # Pptimization with turnover penalty
-│   │     │    └── usual/               # Optimization
-│   ├── benchmarks.py       # Funcitons regarding becnhmarks and index
-│   ├── dashboard_utils.py  # Functions for recursive dashboard process
-│   ├── extraction.py       # All methods to extract Stooq data
-│   ├── inputs.py           # Lists of stocks and Indexes Stooq tickers
-│   ├── main_testing.py     # To test the backend pipleine process
-│   ├── manual_dashborad.py # Extracts the local data to test dashboard
-│   └── portfolio.py        # Functions regarding portfolio build
-│
-├── dash.py             # Streamlit dashboard
+│   │   ├── Clustering/
+│   │   │   └── medoids/
+│   │   │       ├── kmedoids.cpp      # Clustering algorithm (C++)
+│   │   │       ├── kmedoids.py       # Python wrapper for C++ functions
+│   │   │       └── setup.py          # pybind11 build configuration
+│   │   └── Markowitz/
+│   │       ├── restricted/           # Optimization with turnover penalty
+│   │       └── usual/                # Standard optimization
+│   ├── benchmarks.py       # Functions regarding benchmarks and indices
+│   ├── dashboard_utils.py  # Functions for recursive dashboard processing
+│   ├── extraction.py       # Data extraction methods for Stooq
+│   ├── inputs.py           # Stooq ticker lists for stocks and indices
+│   ├── main_testing.py     # Backend pipeline testing
+│   ├── manual_dashboard.py # Local data extraction for dashboard testing
+│   └── portfolio.py        # Portfolio construction logic
+├── dash.py                 # Streamlit dashboard entry point
 ├── .gitignore
-├── index_t.csv         #Index data for testing 
+├── index_t.csv             # Index data for testing 
 ├── License
 ├── README.md
 ├── requirements.txt
-└── temporal.csv        #Stock data for testing
+└── temporal.csv            # Stock data for testing
+```
 
 ## Methodology
 The currently clustering is made with the distance induced by making the correlations a norm,
@@ -77,7 +79,7 @@ The current algorithm for this minimizes the distance, which is the traditional 
 This was made with speed in mind
 
 The Markowitz optimization is made via a gradient descent algorithm, and it's focused to solve the 
-usual markowitz problem, but with a vector of expected return added. That's why there is a lambda option,
+usual markowitz problem for reduced tracking error (w-wb)T Sigma(w_wb), but with a vector of expected return added. That's why there is a lambda option,
 to choose the priority in which the tracking error or excess revanue is made.
 
 Important (work in progress): the covariance matrix is calculated as usual, which is certainly not the best way since it ends up having noise, solving this is a work in progress. Current expected return vector is random between certain values, a linear regression with sickit learn was implemented, but ended removes since it could be slow and better methods are known.
