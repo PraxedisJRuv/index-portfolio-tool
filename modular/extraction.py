@@ -24,7 +24,7 @@ def full_dataframe_extraction(tickers,start, end):
     return data
 
 def index_dataframe_extraction(index,start, end):
-    url=f"https://stooq.com/q/d/l/?s={index}&d1={start:%Y%m%d}&d2={end:%Y%m%d}&i=d&apikey={api_key}"
+    url=f"https://stooq.com/q/d/l/?s={index}&d1={start:%Y%m%d}&d2={end:%Y%m%d}&i=d&apikey=GwgSGfjBlCP74UruFL1KNzx5DiaTVnyE"
     data=(pd.read_csv(url,parse_dates=["Date"])
         .set_index("Date")
         .sort_index())
