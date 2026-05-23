@@ -8,7 +8,7 @@ import modular.portfolio as port
 from modular.optimization.Clustering.medoids.kmedoids import clustering_medoids
 from modular.optimization.Markowitz.usual.markowitz import markowitz_of_periods
 from modular.extraction import full_dataframe_extraction, index_dataframe_extraction
-import modular.dashboard_utilsmix as du
+import modular.dashboard_mix_clusters as du
 from modular.Inputs import stocks, indexes, types_period
 
 st.set_page_config(layout="wide")

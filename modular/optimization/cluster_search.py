@@ -93,6 +93,10 @@ def generate_path(
     return path
 
 
+def _has_empty_cluster(clusterization: Clusterization) -> bool:
+    return any(len(c) == 0 for c in clusterization)
+
+
 def select_intermediate_steps(
     path: List[Clusterization],
     max_steps: int = 3,
@@ -100,17 +104,27 @@ def select_intermediate_steps(
     """
     Selects up to max_steps equidistant intermediate states from the path,
     excluding the first (start) and last (end) states.
+    States with empty clusters are skipped.
 
-    If the total number of moves N <= max_steps, all intermediate states are returned.
-    Otherwise, the states at positions N//4, N//2, and 3*N//4 in the path are returned.
+    If the total number of moves N <= max_steps, all intermediate states without
+    empty clusters are returned.
+    Otherwise, for each candidate position (N//4, N//2, 3*N//4), the nearest
+    preceding state without empty clusters is used. If no such state exists for
+    a given candidate, that step is omitted.
     """
     n = len(path) - 1  # total number of moves
 
     if n <= max_steps:
-        return path[1:-1]
+        return [step for step in path[1:-1] if not _has_empty_cluster(step)]
 
-    indices = [n // 4, n // 2, 3 * n // 4]
-    return [path[i] for i in indices]
+    result: List[Clusterization] = []
+    for idx in [n // 4, n // 2, 3 * n // 4]:
+        for k in range(idx, 0, -1):
+            if not _has_empty_cluster(path[k]):
+                result.append(path[k])
+                break
+
+    return result
 
 
 def cluster_search(
@@ -144,7 +158,7 @@ def cluster_search(
         "intermediate_steps": intermediate_steps,
         "metric_values": metric_values,
     }
-    
+
 if __name__ == "__main__":
     # Example usage
     clusterization_a = [{0, 1, 3}, {2, 4}]

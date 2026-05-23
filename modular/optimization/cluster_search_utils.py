@@ -77,4 +77,5 @@ def get_best_minimal_medoids_by_metric(clustering_a, clustering_b, distance):
     results=cluster_search(clusterization_a,clusterization_b,dist_based_metric,distance)
     print(results)
     medoids=get_best_medoids(results,distance)
+    print(medoids)
     return medoids
