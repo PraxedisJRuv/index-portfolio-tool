@@ -102,4 +102,7 @@ The Markowitz optimization is made via a gradient descent algorithm, and it's fo
 usual markowitz problem for reduced tracking error (w-wb)T Sigma(w_wb), but with a vector of expected return added. That's why there is a lambda option,
 to choose the priority in which the tracking error or excess revanue is made.
 
-Important (work in progress): the covariance matrix is calculated as usual, which is certainly not the best way since it ends up having noise, solving this is a work in progress. Current expected return vector is random between certain values, a linear regression with sickit learn was implemented, but ended removes since it could be slow and better methods are known.
+The bi-objetcive clustering option works misxing two clusterization results and returning 
+among the three the clusters in between them at the midle of their change to one into the other. It chooses the one which optemizes a certain metric, in this case minimizing the distance to any of the options was chosen for a quicker result, but the ideal would be minmizing the tracking error. THe details on how the algorithm works can be found at algortihm_pseudocode.md file 
+
+Important (work in progress): the covariance matrix is calculated as usual, which is certainly not the best way since it ends up having noise, solving this is a work in progress. 
