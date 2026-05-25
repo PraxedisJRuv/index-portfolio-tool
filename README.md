@@ -45,34 +45,51 @@ streamlit run dash.py
 
 ```text
 index-portfolio-tool/
-├── .vscode/                # Configuration for VS Code (C++ settings)
-├── Important notes/
-│   ├── some_errors.txt     # Details about common errors and solutions
-│   └── to_do.txt           # List of work in progress
-├── Modular/
-│   ├── optimization/ 
-│   │   ├── Clustering/
-│   │   │   └── medoids/
-│   │   │       ├── kmedoids.cpp      # Clustering algorithm (C++)
-│   │   │       ├── kmedoids.py       # Python wrapper for C++ functions
-│   │   │       └── setup.py          # pybind11 build configuration
-│   │   └── Markowitz/
-│   │       ├── restricted/           # Optimization with turnover penalty
-│   │       └── usual/                # Standard optimization
-│   ├── benchmarks.py       # Functions regarding benchmarks and indices
-│   ├── dashboard_utils.py  # Functions for recursive dashboard processing
-│   ├── extraction.py       # Data extraction methods for Stooq
-│   ├── inputs.py           # Stooq ticker lists for stocks and indices
-│   ├── main_testing.py     # Backend pipeline testing
-│   ├── manual_dashboard.py # Local data extraction for dashboard testing
-│   └── portfolio.py        # Portfolio construction logic
-├── dash.py                 # Streamlit dashboard entry point
 ├── .gitignore
-├── index_t.csv             # Index data for testing 
-├── License
+├── Important notes/
+│   ├── Some errors.txt     # Common issues and troubleshooting notes
+│   └── to do.txt           # Current work in progress
+├── modular/
+│   ├── benchmarks.py       # Benchmark-related helpers and index logic
+│   ├── dashboard_mix_clusters.py  # Mixed-cluster dashboard entry point
+│   ├── dashboard_utils.py  # Dashboard processing helpers
+│   ├── extraction.py       # Data extraction utilities
+│   ├── Inputs.py           # Ticker lists and inputs
+│   ├── main_testing.py     # Backend/testing pipeline
+│   ├── manual_dashboard.py # Local dashboard testing helpers
+│   ├── portfolio.py        # Portfolio construction logic
+│   └── optimization/
+│       ├── algorithm_pseudocode.md   # Description of the bi-objective clustering
+│       ├── cluster_search.py         # Bi-objective cluster algorithm
+│       ├── cluster_search_utils.py   # Pipline integration of Cluster search
+│       ├── estimate.py               # Estimation helpers (returns)
+│       ├── Clustering/
+│       │   ├── medoids.cpp           # C++ clustering implementation
+│       │   ├── multi_objective.py     # Multi-objective clustering logic
+│       │   ├── cluster/
+│       │   │   ├── cluster_assignations.cpp #returns vector with each cluster centroid
+│       │   │   ├── kmedoids.py
+│       │   │   └── setup.py
+│       │   └── medoids/
+│       │       ├── kmedoids.cpp             #returns vector with centroids
+│       │       ├── kmedoids.py
+│       │       └── setup.py
+│       └── Markowitz/
+│           ├── restricted/
+│           │   ├── markowitz.cpp
+│           │   ├── markowitz.py
+│           │   └── setup.py
+│           └── usual/
+│               ├── markowitz.cpp
+│               ├── markowitz.py
+│               └── setup.py
+├── dash.py                 # Streamlit dashboard entry point
+├── mixed_cluster_dash.py   # Alternate mixed-cluster dashboard script
+├── LICENSE
 ├── README.md
 ├── requirements.txt
-└── temporal.csv            # Stock data for testing
+├── index_t.csv             # Sample index dataset
+└── temporal.csv            # Sample stock dataset
 ```
 
 ## Methodology
