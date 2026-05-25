@@ -1,8 +1,5 @@
 List of things needed to be done
 
-Reviwe the theory regarding Markowitz for index portfolio and a lambda/alpha relaxation
-As of now, the program has a fixed lamba value (which should be chosen in the dashboard),
-and it also has a random alpha.
 
 It would be also really important, to show which stocks are the centroids (this might be easy)
 what is not is a table, which streamlit has of the stocks and in which centroid do they belong. 
