@@ -4,8 +4,10 @@ from io import StringIO
 import time
 import random
 import os
+from dotenv import load_dotenv
 
-api_key=os.getenv("AK_STOOQ")
+load_dotenv()
+api_key=os.getenv("API_KEY")
 
 def full_dataframe_extraction(tickers,start, end):
     flag=True

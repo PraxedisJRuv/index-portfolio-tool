@@ -1,4 +1,7 @@
-def portfolio_value(benchmark, df, period, num_periods, tickers):
+import pandas as pd
+import numpy as np
+
+def portfolio_value(benchmark: list[list[float]], df: pd.DataFrame, period: pd.Timedelta, num_periods: int, tickers: list[str])->list[float]:
     portfolio=[0]*num_periods
     for j in range(len(tickers)):
         valores=df[f"{tickers[j]}_Close"].resample(period).mean()
@@ -6,7 +9,7 @@ def portfolio_value(benchmark, df, period, num_periods, tickers):
             portfolio[i]=portfolio[i]+benchmark[i][j]*valores.iloc[i]
     return portfolio
 
-def general_portfolio_values(df, period, num_periods,tickers):
+def general_portfolio_values(df: pd.DataFrame, period: pd.Timedelta, num_periods: int, tickers: list[str])->list[list[float]]:
     portfolio=[]
     for j in range(len(tickers)):
         portfolio.append([])
@@ -15,7 +18,7 @@ def general_portfolio_values(df, period, num_periods,tickers):
             portfolio[j].append(valores.iloc[i])
     return portfolio
 
-def general_portfolio_returns_from_df(df, period, num_periods, tickers):
+def general_portfolio_returns_from_df(df: pd.DataFrame, period: pd.Timedelta, num_periods: int, tickers: list[str])->list[list[float]]:
     values=general_portfolio_values(df, period, num_periods, tickers)
     returns=[]
     for i in range(len(values)):
@@ -24,7 +27,7 @@ def general_portfolio_returns_from_df(df, period, num_periods, tickers):
             returns[i].append((values[i][j+1]/values[i][j])-1)
     return returns
 
-def portfolio_vlaue_by_asset(benchmark, df, period, num_periods, tickers):
+def portfolio_vlaue_by_asset(benchmark: list[list[float]], df: pd.DataFrame, period: pd.Timedelta, num_periods: int, tickers: list[str]):
     portfolio=[]
     for j in range(len(tickers)):
         valores=df[f"{tickers[j]}_Close"].resample(period).mean()
@@ -33,13 +36,13 @@ def portfolio_vlaue_by_asset(benchmark, df, period, num_periods, tickers):
             portfolio[j].append(benchmark[i][j]*valores.iloc[i])
     return portfolio
 
-def portfolio_returns(portfolio,num_periods):
+def portfolio_returns(portfolio: list[list[float]], num_periods: int)->list[float]:
     port_return=[0]*num_periods
     for i in range(num_periods-1):
         port_return[i]=(portfolio[i+1]/portfolio[i])-1
     return port_return
 
-def general_portfolio_returns(portfolio,num_periods):
+def general_portfolio_returns(portfolio: list[list[float]], num_periods: int)->list[list[float]]:
     r=[]
     for j in range(len(portfolio)):
         r.append([])
@@ -47,13 +50,13 @@ def general_portfolio_returns(portfolio,num_periods):
             r[j].append((portfolio[j][i+1]/portfolio[j][i])-1)
     return r
 
-def return_excess_vector(returns_vector, rf_by_period):
+def return_excess_vector(returns_vector: list[float], rf_by_period: float)->list[float]:
     excess=[]
     for i in returns_vector:
         excess.append(i-rf_by_period)
     return excess
 
-def correlations_matrix_from_df(tickers, df):
+def correlations_matrix_from_df(tickers: list[str], df: pd.DataFrame)->np.ndarray:
     import pandas as pd
     flag=True
     for ticker in tickers:
@@ -67,15 +70,15 @@ def correlations_matrix_from_df(tickers, df):
     data=data.corr().to_numpy()
     return data
 
-def metric_correlation_matrix(matrix):
+def metric_correlation_matrix(matrix: list[list[float]])->np.ndarray:
     import numpy as np
     for i in range(len(matrix)):
         for j in range(len(matrix[0])):
             matrix[i][j]=2*(1-matrix[i][j])
-    matrix=np.sqrt(matrix)
-    return matrix
+    matriz=np.sqrt(matrix)
+    return matriz
 
-def general_metrizised_correlation_matrix(df, period, num_periods,tickers):
+def general_metrizised_correlation_matrix(df: pd.DataFrame, period: pd.Timedelta, num_periods: int, tickers: list[str])->np.ndarray:
     import numpy as np
     portfolio=general_portfolio_values(df, period, num_periods,tickers)
     r=general_portfolio_returns(portfolio, num_periods)
@@ -90,7 +93,7 @@ def general_metrizised_correlation_matrix(df, period, num_periods,tickers):
     matrix=metric_correlation_matrix(matrix)
     return matrix
 
-def cov_matrix(index_returns,portfolio_returns,num_periods):
+def cov_matrix(index_returns: list[float], portfolio_returns: list[list[float]], num_periods: int)->np.ndarray:
     import numpy as np
     diferencia=[]
     for i in range(len(portfolio_returns)):
@@ -100,7 +103,7 @@ def cov_matrix(index_returns,portfolio_returns,num_periods):
     matrix=np.cov(diferencia)
     return matrix
 
-def dev_matrix_from_df(df, period, num_periods, tickers):
+def dev_matrix_from_df(df: pd.DataFrame, period: pd.Timedelta, num_periods: int, tickers: list[str])->list[list[float]]:
     values=general_portfolio_returns_from_df(df,period,num_periods,tickers)
     desv_returns_matrix=[]
     for i in range (len(values)):
