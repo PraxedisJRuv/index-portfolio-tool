@@ -9,7 +9,7 @@ permissions:
 
 jobs:
   test_extraciton:
-    runs on: unbuntu-latest
+    runs-on: ubuntu-latest
 
     steps:
     - name: checkout
@@ -21,9 +21,8 @@ jobs:
         python-version: 3.12
     
     - name: Install dependencies
-      run: pip install pytest
-      run: pip install requierments.txt
+      run: pip install pytest && pip install -r requirements.txt
 
-    -name: Test with pytest
-    working-directory: modular
-    run: pytest test_extraciton.py
+    - name: Test with pytest
+      working-directory: modular
+      run: pytest test_extraction.py
