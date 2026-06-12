@@ -34,10 +34,10 @@ def calc_vola(df: pd.DataFrame, period: pd.Timedelta, num_periods: int, tickers:
         volatility_weight.append([])
         desv_sum=0
         for j in range(len(tickers)):
-            deviations_by_period[j][i]=1/deviations_by_period[j][i]
-            desv_sum=desv_sum+deviations_by_period[j][i]
+            deviations_by_period[j].iloc[i]=1/deviations_by_period[j].iloc[i]
+            desv_sum=desv_sum+deviations_by_period[j].iloc[i]
         for j in range(len(tickers)):
-            volatility_weight[i].append(deviations_by_period[j][i]/desv_sum)
+            volatility_weight[i].append(deviations_by_period[j].iloc[i]/desv_sum)
     return volatility_weight
 
 def calc_EW(companies: list[str], num_periods: int)->list[list[float]]:

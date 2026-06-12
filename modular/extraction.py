@@ -27,11 +27,19 @@ def full_dataframe_extraction(tickers,start, end):
 
 def index_dataframe_extraction(index,start, end):
     url=f"https://stooq.com/q/d/l/?s={index}&d1={start:%Y%m%d}&d2={end:%Y%m%d}&i=d&apikey={api_key}"
-    data=(pd.read_csv(url,parse_dates=["Date"])
-        .set_index("Date")
-        .sort_index())
-    data.columns = [f"{index}_Open", f"{index}_High", f"{index}_Low", f"{index}_Close", f"{index}_Volume"]
-    return data
+    try:
+        data=(pd.read_csv(url,parse_dates=["Date"])
+            .set_index("Date")
+            .sort_index())
+    
+        if data.empty:
+            return None
+        
+        data.columns = [f"{index}_Open", f"{index}_High", f"{index}_Low", f"{index}_Close", f"{index}_Volume"]
+        return data
+    
+    except(pd.errors.EmptyDataError, ValueError):
+        return None
 
 """
 This functions using pdreader were used since the other fucntions were having an error
