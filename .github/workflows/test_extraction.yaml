@@ -1,0 +1,29 @@
+name: Test Extraction
+
+on:
+  push:
+    branches: [testing]
+
+permissions: 
+  contents: read
+
+jobs:
+  test_extraciton:
+    runs on: unbuntu-latest
+
+    steps:
+    - name: checkout
+      uses: actions/checkout@v4
+
+    - name: Set up Python
+      uses: actions/setup-python@v3
+      with:
+        python-version: 3.12
+    
+    - name: Install dependencies
+      run: pip install pytest
+      run: pip install requierments.txt
+
+    -name: Test with pytest
+    working-directory: modular
+    run: pytest test_extraciton.py
