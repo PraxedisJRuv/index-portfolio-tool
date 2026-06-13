@@ -5,7 +5,7 @@ import pandas as pd
 import numpy as np
 from scipy import stats
 
-def full_estimate_returns(index_returns:list[float], portfolio_returns_by_asset:list[list[float]], rf_annual:float, num_periods:int):
+def full_estimate_returns(index_returns:list[float], portfolio_returns_by_asset:list[list[float]], rf_annual:float, num_periods:int)->list[float]:
     rf_period=(1+rf_annual)**(1/num_periods)-1
     
     excess_rm=port.return_excess_vector(index_returns, rf_period)
@@ -40,7 +40,7 @@ def full_estimate_returns(index_returns:list[float], portfolio_returns_by_asset:
     return mu
 
 
-def estimate_returns(index_returns:list[float], portfolio_returns_by_asset:list[list[float]], rf_annual:float, num_periods:int):
+def estimate_returns(index_returns:list[float], portfolio_returns_by_asset:list[list[float]], rf_annual:float, num_periods:int)->np.ndarray:
     rf_period=(1+rf_annual)**(1/num_periods)-1
     
     excess_rm=port.return_excess_vector(index_returns, rf_period)
