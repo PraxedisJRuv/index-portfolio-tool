@@ -1,6 +1,5 @@
 import datetime
 import pandas as pd
-import numpy as np
 
 def amount_of_periods(period: pd.Timedelta,start: datetime,end: datetime)->int:
     num_periods = (end - start) / period
