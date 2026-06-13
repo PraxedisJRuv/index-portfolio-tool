@@ -1,7 +1,8 @@
 import streamlit as st
 import pandas as pd
-import modular.dashboard_mix_clusters as du
-from modular.Inputs import indexes, types_period
+import datetime
+import modular.modules.dashboard_mix_clusters as du
+from modular.modules.Inputs import indexes, types_period
 
 st.set_page_config(layout="wide")
 st.title("Portfolio Analytics Dashboard")
@@ -40,6 +41,7 @@ tickers = [ "Bimbo",
     "Qualitas Controladora SAB de CV",
     "Regional SA de CV",
     "Walmart de Mexico SAB de CV"]
+
 index_name = st.selectbox("Índice", indexes)
 
 col1, col2 = st.columns(2)

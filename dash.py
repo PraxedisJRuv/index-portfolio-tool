@@ -1,8 +1,8 @@
 import streamlit as st
 import pandas as pd
 from datetime import datetime
-import modular.dashboard_utils as du
-from modular.Inputs import stocks, indexes, types_period
+import modular.modules.dashboard_utils as du
+from modular.modules.Inputs import stocks, indexes, types_period
 
 st.set_page_config(layout="wide")
 st.title("Portfolio Analytics Dashboard")
