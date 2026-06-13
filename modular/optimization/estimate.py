@@ -1,7 +1,4 @@
 import modular.portfolio as port
-import modular.benchmarks as bm
-from datetime import datetime
-import pandas as pd
 import numpy as np
 from scipy import stats
 

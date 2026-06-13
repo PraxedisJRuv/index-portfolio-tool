@@ -1,6 +1,7 @@
 from modular.optimization.cluster_search import cluster_search
+from typing import Set, Dict, Any
 
-def clusterization_make(clustering):
+def clusterization_make(clustering:list[int])->list[Set]:
     """
     Makes result from cpp into a list[set()] 
     that cluster search can use
@@ -16,7 +17,8 @@ def clusterization_make(clustering):
     print(clusterization)
     return clusterization
 
-def dist_based_metric(clusterization, dist):
+
+def dist_based_metric(clusterization:list[Set], dist:list[list[float]])->float:
     """
     Evaluate the clustering regarding a distance
     """
@@ -33,7 +35,8 @@ def dist_based_metric(clusterization, dist):
         total=total+min
     return total
 
-def get_medoids(clusterization, dist):
+
+def get_medoids(clusterization:list[Set], dist:list[list[float]])->list[int]:
      """ 
      Get the medoids of a cluster_search() step
      """
@@ -52,7 +55,8 @@ def get_medoids(clusterization, dist):
      print(medoids)
      return medoids
 
-def get_minimal_intermediate_steps(result):
+
+def get_minimal_intermediate_steps(result:Dict[str, Any])->int:
      """
      Gets the step with the least metric, in this case, distance
      """
@@ -65,17 +69,18 @@ def get_minimal_intermediate_steps(result):
      print(index)
      return index
 
-def get_best_medoids(clusterization, dist):
+
+def get_best_medoids(clusterization:list[Set], dist:list[list[float]])->list[int]:
     index=get_minimal_intermediate_steps(clusterization)
     best=clusterization["intermediate_steps"][index]
     medoids=get_medoids(best,dist)
     return(medoids)
 
-def get_best_minimal_medoids_by_metric(clustering_a, clustering_b, distance):
+def get_best_minimal_medoids_by_metric(clustering_a:list[int], clustering_b:list[int], distance:list[list[float]])->list[int]:
     clusterization_a=clusterization_make(clustering_a)
     clusterization_b=clusterization_make(clustering_b)
     results=cluster_search(clusterization_a,clusterization_b,dist_based_metric,distance)
-    print(results)
+    #print(results)
     medoids=get_best_medoids(results,distance)
-    print(medoids)
+    #print(medoids)
     return medoids

@@ -6,7 +6,7 @@ from datetime import datetime
 import benchmarks as bm
 import portfolio as port
 from optimization.Clustering.medoids.kmedoids import clustering_medoids
-from optimization.Markowitz.usual.markowitz import markowitz,markowitz_of_periods
+from optimization.Markowitz.usual.markowitz import markowitz_of_periods
 
 st.set_page_config(layout="wide")
 st.title("Portfolio Analytics Dashboard")
