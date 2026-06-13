@@ -45,51 +45,62 @@ streamlit run dash.py
 
 ```text
 index-portfolio-tool/
-├── .gitignore
 ├── Important notes/
 │   ├── Some errors.txt     # Common issues and troubleshooting notes
 │   └── to do.txt           # Current work in progress
 ├── modular/
-│   ├── benchmarks.py       # Benchmark-related helpers and index logic
-│   ├── dashboard_mix_clusters.py  # Mixed-cluster dashboard entry point
-│   ├── dashboard_utils.py  # Dashboard processing helpers
-│   ├── extraction.py       # Data extraction utilities
-│   ├── Inputs.py           # Ticker lists and inputs
-│   ├── main_testing.py     # Backend/testing pipeline
-│   ├── manual_dashboard.py # Local dashboard testing helpers
-│   ├── portfolio.py        # Portfolio construction logic
-│   └── optimization/
-│       ├── algorithm_pseudocode.md   # Description of the bi-objective clustering
-│       ├── cluster_search.py         # Bi-objective cluster algorithm
-│       ├── cluster_search_utils.py   # Pipline integration of Cluster search
-│       ├── estimate.py               # Estimation helpers (returns)
-│       ├── Clustering/
-│       │   ├── medoids.cpp           # C++ clustering implementation
-│       │   ├── multi_objective.py     # Multi-objective clustering logic
-│       │   ├── cluster/
-│       │   │   ├── cluster_assignations.cpp #returns vector with each cluster centroid
-│       │   │   ├── kmedoids.py
-│       │   │   └── setup.py
-│       │   └── medoids/
-│       │       ├── kmedoids.cpp             #returns vector with centroids
-│       │       ├── kmedoids.py
-│       │       └── setup.py
-│       └── Markowitz/
-│           ├── restricted/
-│           │   ├── markowitz.cpp
-│           │   ├── markowitz.py
-│           │   └── setup.py
-│           └── usual/
-│               ├── markowitz.cpp
-│               ├── markowitz.py
-│               └── setup.py
-├── dash.py                 # Streamlit dashboard entry point
-├── mixed_cluster_dash.py   # Alternate mixed-cluster dashboard script
+│   ├── modules/
+│   │   ├── benchmarks.py                 # Benchmark-related helpers and index logic
+│   │   ├── dashboard_mix_clusters.py     # Mixed-cluster dashboard utilities
+│   │   ├── dashboard_utils.py            # Dashboard processing helpers
+│   │   ├── extraction.py                 # Data extraction utilities
+│   │   ├── Inputs.py                     # Ticker lists and inputs
+│   │   ├── portfolio.py                  # Portfolio construction logic
+│   │   └── optimization/
+│   │       ├── algorithm_pseudocode.md   # Description of the bi-objective clustering
+│   │       ├── cluster_search.py         # Bi-objective cluster algorithm
+│   │       ├── cluster_search_utils.py   # Pipeline integration of cluster search
+│   │       ├── estimate.py               # Estimation helpers (returns)
+│   │       ├── Clustering/
+│   │       │   ├── medoids.cpp           # C++ clustering implementation
+│   │       │   ├── multi_objective.py    # Multi-objective clustering logic
+│   │       │   ├── cluster/
+│   │       │   │   ├── cluster_assignations.cpp   # C++ cluster centroid assignment
+│   │       │   │   ├── kmedoids.py
+│   │       │   │   ├── setup.py
+│   │       │   │   └── test.py
+│   │       │   └── medoids/
+│   │       │       ├── kmedoids.cpp      # C++ k-medoids implementation
+│   │       │       ├── kmedoids.py
+│   │       │       ├── setup.py
+│   │       │       └── test.py
+│   │       └── Markowitz/
+│   │           ├── restricted/
+│   │           │   ├── markowitz.cpp
+│   │           │   ├── markowitz.py
+│   │           │   ├── setup.py
+│   │           │   └── test.py
+│   │           └── usual/
+│   │               ├── markowitz.cpp
+│   │               ├── markowitz.py
+│   │               ├── setup.py
+│   │               └── test.py
+│   └── testing/
+│       ├── main_testing.py               # Backend/testing pipeline
+│       ├── manual_dashboard.py           # Local dashboard testing helpers
+│       ├── regression.py                 # Regression testing
+│       ├── regression2.py                # Additional regression tests
+│       └── test_extraction.py            # Data extraction tests
+├── resources/
+│   ├── index_t.csv                       # Sample index dataset
+│   ├── temporal.csv                      # Sample temporal stock data
+│   └── Usable.csv                        # Additional sample dataset
+│ 
+├── dash.py                               # Streamlit dashboard entry point
+├── mixed_cluster_dash.py                 # Alternate mixed-cluster dashboard script
 ├── LICENSE
 ├── README.md
-├── requirements.txt
-├── index_t.csv             # Sample index dataset
-└── temporal.csv            # Sample stock dataset
+└── requirements.txt
 ```
 
 ## Methodology
