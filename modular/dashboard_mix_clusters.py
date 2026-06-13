@@ -7,7 +7,7 @@ import modular.benchmarks as bm
 import modular.portfolio as port
 from modular.optimization.Clustering.medoids.kmedoids import clustering_medoids
 from modular.optimization.Markowitz.usual.markowitz import markowitz_of_periods
-from modular.extraction import full_dataframe_extraction, full_robust_dataframe_extraction, index_dataframe_extraction, preventive_pdreader_extraction, pdreader_full_dataframe_extraction
+from modular.extraction import index_dataframe_extraction
 from modular.optimization.cluster_search_utils import get_best_minimal_medoids_by_metric
 from modular.optimization.Clustering.cluster.kmedoids import clustering_medoids as cluster_vector
 
@@ -24,7 +24,7 @@ def require_keys(keys):
     return True
 
 #First process
-def run_process_1(tickers,index_name,period,start,end):
+def run_process_1(tickers:list[str], index_name:str, period:pd.Timedelta, start:datetime, end:datetime):
     num_periods = bm.amount_of_periods(period,start,end)
     
     df = pd.read_csv("C:/Users/praxy/OneDrive/Escritorio/Progra/Tests_for_live_index/Usable.csv", index_col=0, parse_dates=True)
@@ -46,7 +46,7 @@ def run_process_1(tickers,index_name,period,start,end):
 
 
 #segundo proceso
-def run_process_2(tickers,num_medoids,period):
+def run_process_2(tickers:list[str], num_medoids:int, period:pd.Timedelta):
     p1 = st.session_state["p1"]
 
     correlation = port.general_metrizised_correlation_matrix(
@@ -70,7 +70,7 @@ def run_process_2(tickers,num_medoids,period):
         "num_periods": p1["num_periods"]
     }
 
-def run_process_3(tickers,num_medoids,period):
+def run_process_3(tickers:list[str], num_medoids:int, period:pd.Timedelta):
     p1 = st.session_state["p1"]
 
     correlation = port.dev_matrix_from_df(
@@ -94,7 +94,7 @@ def run_process_3(tickers,num_medoids,period):
         "num_periods": p1["num_periods"]
     }
 
-def run_process_4(tickers,num_medoids,period):
+def run_process_4(tickers:list[str], num_medoids:int, period:pd.Timedelta):
     p1 = st.session_state["p1"]
 
     dist_corr= port.general_metrizised_correlation_matrix(        
@@ -127,7 +127,7 @@ def run_process_4(tickers,num_medoids,period):
         "num_periods": p1["num_periods"]
     }
 
-def run_process_5(tickers,period,lambda_for_Markowitz):
+def run_process_5(tickers:list[str], period:pd.Timedelta, lambda_for_Markowitz:float):
     p1 = st.session_state["p1"]
 
     vola_weight = bm.calc_vola(p1["df"],period,p1["num_periods"],tickers)
@@ -155,7 +155,7 @@ def run_process_5(tickers,period,lambda_for_Markowitz):
     }
 
 #graph 
-def metrics_and_chart(returns, index_returns, start, end, num_periods, key):
+def metrics_and_chart(returns:list[float], index_returns:list[float], start:datetime, end:datetime, num_periods:int, key):
 
     dates = pd.date_range(start, end, num_periods)
 

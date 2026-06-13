@@ -21,6 +21,9 @@ lambda_turnover = 0.05
 
 # Optimizar
 w_opt = markowitz_cpp.optimize_portfolio(Sigma, wb, w_prev, lambda_turnover)
+print(type(Sigma))
+print(type(wb))
+print(type(w_prev))
 print(wb)
 print("w_opt =", w_opt)
 print("suma =", w_opt.sum())
